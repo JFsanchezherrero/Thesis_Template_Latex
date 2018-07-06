@@ -1,0 +1,16 @@
+%% quote
+\makeatletter
+\newenvironment{chapquote}[2][-2.5em]
+  {\setlength{\@tempdima}{#1}%
+   \def\chapquote@author{#2}%
+   \parshape 1 \@tempdima \dimexpr\textwidth-1\@tempdima\relax%
+   \itshape}
+  {\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
+\makeatother
+
+\vspace*{\fill}
+\begin{chapquote}{William Shakespeare, \textit{Hamlet, Act III, Scene I.} (1603).}
+``To be or not to be, this is the question''\\
+\end{chapquote}
+\vspace*{\fill} %%align in center or at the bottom
+

@@ -1,0 +1,141 @@
+% -*- Mode:TeX -*-
+%% IMPORTANT: The official thesis specifications are available at: http://libraries.mit.edu/archives/thesis-specs/
+
+%% template downloaded from: http://web.mit.edu/thesis/tex/
+%% modified by Jose Fco. Sanchez Herrero, July 2018
+%% https://es.sharelatex.com/learn/Main_Page
+
+\documentclass[b5paper,10pt,vi,twoside, openright]{mitthesis} %%tipo de letra, copyright, 
+\title{Tesis doctoral....}
+\author{Autor}
+\date{Mes Año}
+
+%% use packages
+\usepackage{graphicx}
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+\pagestyle{empty}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc} %% acentos
+\usepackage{tcolorbox} %% boxes
+\usepackage{lipsum} %% boxes
+\usepackage{microtype} %% justify
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.90}
+\usepackage{lipsum}% just to generate text for the example
+
+%% glossary
+\usepackage[toc]{glossaries}
+\loadglsentries{dictionary}
+\makeglossaries
+
+%% style
+\usepackage{fancyhdr}  
+\pagestyle{fancy} 
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancypagestyle{mainmatter}{%    
+	\fancyhf{} 	
+	\fancyhead[RO,LE]{\nouppercase{\small \textsf{\leftmark}}}
+	\fancyfoot[RO,LE]{\textsf{Pág. \thepage}} 
+}
+\setlength{\headheight}{15pt}
+
+%% label group
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\tikzset{>=latex}
+
+\newcounter{letternum}
+\newcounter{lettersum}
+\setcounter{lettersum}{13}
+\newlength{\thumbtopmargin}
+\setlength{\thumbtopmargin}{1cm}
+\newlength{\thumbbottommargin}
+\setlength{\thumbbottommargin}{3cm}
+\newlength{\thumbheight}
+\pgfmathsetlength{\thumbheight}{%
+(\paperheight-\thumbtopmargin-\thumbbottommargin)/\value{lettersum}}
+
+\newlength{\thumbwidth}
+\setlength{\thumbwidth}{1.5cm}
+
+\tikzset{
+   thumb/.style={
+%   draw=black,
+  fill=light-gray,
+   text=black,
+   minimum height=\thumbheight, %\thumbheight,
+   text width=\thumbwidth,
+	outer sep=0pt,%   outer sep=10pt,
+   font=\sffamily\Huge,
+}
+}
+\newcommand{\oddthumb}[1]{%
+      \begin{tikzpicture}[remember picture, overlay]
+        \node [thumb,text centered,anchor=north east,] at ($%
+            (current page.north east)-%
+            (0,\thumbtopmargin+\value{letternum}*\thumbheight)%
+        $) {#1};
+   \end{tikzpicture}
+}
+\newcommand{\eventhumb}[1]{%
+      \begin{tikzpicture}[remember picture, overlay]
+        \node [thumb,text centered,anchor=north west,] at ($%
+            (current page.north west)-%
+            (0,\thumbtopmargin+\value{letternum}*\thumbheight)%
+        $) {#1};
+   \end{tikzpicture}
+}
+% create a new command to set a new lettergroup
+\newcommand{\lettergroup}[1]{%
+\fancyhead[LO]{\oddthumb{#1}}%
+\fancyhead[RE]{\eventhumb{#1}}%
+\fancypagestyle{chapterstart}{%
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+    \fancyhf{}
+    \chead{\oddthumb{#1}}% chapters start only on odd pages
+    \fancyfoot[RO,LE]{\textsf{Pág. \thepage}} %\fancyfoot[RO,LE]{\textsf{Page \thepage}}
+  }
+    \thispagestyle{chapterstart}
+\stepcounter{letternum}%
+}
+
+
+%% lets go
+\begin{document}
+
+\pagestyle{empty}
+\include{initial}
+\cleardoublepage
+
+\include{cover}
+\cleardoublepage
+
+\include{quote}
+\cleardoublepage
+
+\include{agrad}
+\cleardoublepage
+
+\pagenumbering{roman}
+\pagestyle{empty}
+\include{contents}
+
+\pagestyle{mainmatter}
+\pagenumbering{arabic}
+\include{chap1} %% Intro
+\include{chap2} %% Objetivos
+\include{chap3} %% Informe de los artículos
+%%\include{chap4} %% Articulos
+%%\include{chap4} %% Discusión
+%%\include{chap5} %% Conclusiones
+%%\include{chap7} %% Referencias
+\appendix
+\include{appa}
+\include{appb}
+\include{appc}
+\include{biblio}
+
+\end{document}
+
