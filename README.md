@@ -1,2 +1,2 @@
-# Thesis_Template_Latex
+# Thesis Template Latex
 Latex template for my thesis dissertation
