@@ -1,0 +1,38 @@
+% -*- Mode:TeX -*-
+\renewcommand{\listtablename}{Índice de tablas} %% renombra cuadros -> tablas
+
+%%%%%%%%%%%%%%%%
+%% Indice
+\tableofcontents
+\cleardoublepage
+%%%%%%%%%%%%%%%%
+
+\setcounter{page}{1} %% re-inicia pagina
+
+%%%%%%%%%%%%%%%%
+%% figuras
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\cleardoublepage
+%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%
+%% tablas
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\cleardoublepage
+%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%
+%% glosario %% abreviaturas?
+%% Tamaño de letra small or footnotesize
+\small
+%%\footnotesize
+\printglossary[title={Glosario}]
+\printglossary[type=\acronymtype,title={Abreviaciones}]
+
+%%\printglossaries
+\cleardoublepage
+%%%%%%%%%%%%%%%%
+
+\normalsize
